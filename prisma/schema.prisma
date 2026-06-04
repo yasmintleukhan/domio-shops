@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Shop {
+  id                   String     @id @default(uuid())
+  slug                 String     @unique
+  custom_domain        String?
+  name                 String
+  description          String?
+  logo_url             String?
+  whatsapp_number      String
+  instagram_url        String?
+  theme                Json       @default("{\"accent\":\"#C9A84C\",\"button_color\":\"#C9A84C\",\"font\":\"onest\"}")
+  whatsapp_template    String?
+  status               ShopStatus @default(trial)
+  subscription_ends_at DateTime?
+  created_at           DateTime   @default(now())
+  users                ShopUser[]
+  products             Product[]
+  order_events         OrderEvent[]
+  page_views           PageView[]
+}
+
+model ShopUser {
+  id            String    @id @default(uuid())
+  shop_id       String
+  email         String    @unique
+  password_hash String
+  role          UserRole  @default(shop_owner)
+  last_login_at DateTime?
+  created_at    DateTime  @default(now())
+  shop          Shop      @relation(fields: [shop_id], references: [id])
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  shop_id     String
+  name        String
+  description String?
+  price       Decimal  @db.Decimal(12, 2)
+  images      String[] @default([])
+  category    String?
+  in_stock    Boolean  @default(true)
+  is_active   Boolean  @default(true)
+  sort_order  Int      @default(0)
+  created_at  DateTime @default(now())
+  shop        Shop     @relation(fields: [shop_id], references: [id])
+}
+
+model OrderEvent {
+  id               String   @id @default(uuid())
+  shop_id          String
+  session_id       String
+  product_ids      String[]
+  cart_total       Decimal  @db.Decimal(12, 2)
+  whatsapp_clicked Boolean  @default(false)
+  created_at       DateTime @default(now())
+  shop             Shop     @relation(fields: [shop_id], references: [id])
+}
+
+model PageView {
+  id         String   @id @default(uuid())
+  shop_id    String
+  session_id String
+  product_id String?
+  page       String
+  referrer   String?
+  created_at DateTime @default(now())
+  shop       Shop     @relation(fields: [shop_id], references: [id])
+}
+
+enum ShopStatus {
+  active
+  suspended
+  trial
+  expired
+}
+
+enum UserRole {
+  shop_owner
+  shop_staff
+  founder
+}
