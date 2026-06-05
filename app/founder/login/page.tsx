@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { LayoutDashboard } from "lucide-react";
 
 export default function FounderLoginPage() {
   const router = useRouter();
@@ -35,18 +36,20 @@ export default function FounderLoginPage() {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold">
-            <span className="text-[#C9A84C]">Domio</span>{" "}
-            <span className="text-[#f5f0e8]">Shops</span>
-          </h1>
-          <p className="text-[#888880] mt-2">Панель основателя</p>
+      <div
+        className="pointer-events-none fixed inset-0"
+        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 70%)" }}
+      />
+      <div className="w-full max-w-sm relative z-10">
+        <div className="flex flex-col items-center mb-8">
+          <div className="w-12 h-12 rounded-2xl bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center mb-4">
+            <LayoutDashboard size={22} className="text-[#C9A84C]" strokeWidth={1.5} />
+          </div>
+          <h1 className="text-xl font-semibold text-[#f5f0e8]">Административный вход</h1>
+          <p className="text-[#888880] text-sm mt-1">Только для авторизованных сотрудников</p>
         </div>
 
-        <div className="bg-[#141414] border border-[#2a2a2a] rounded-2xl p-8">
-          <h2 className="text-xl font-semibold text-[#f5f0e8] mb-6">Войти</h2>
-
+        <div className="bg-[#141414] border border-[#2a2a2a] rounded-2xl p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               id="email"
@@ -80,6 +83,9 @@ export default function FounderLoginPage() {
             </Button>
           </form>
         </div>
+        <p className="text-center text-[#888880]/40 text-xs mt-6">
+          Доступ ограничен
+        </p>
       </div>
     </div>
   );
