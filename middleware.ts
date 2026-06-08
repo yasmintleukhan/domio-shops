@@ -14,16 +14,17 @@ export default auth(async function middleware(request: NextAuthRequest) {
     return NextResponse.next();
   }
 
-  const host    = hostname.split(":")[0];
-  const session = request.auth;
-  const role    = (session?.user as Record<string, unknown> | undefined)?.role as string | undefined;
+  const host       = hostname.split(":")[0];
+  const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
+  const session    = request.auth;
+  const role       = (session?.user as Record<string, unknown> | undefined)?.role as string | undefined;
 
   // ── Resolve subdomain ──────────────────────────────────────────────
   let subdomain = "";
-  if (host === "shop.domio.top"    || host === "shop.localhost")    subdomain = "shop";
-  else if (host === "founder.domio.top" || host === "founder.localhost") subdomain = "founder";
-  else if (host.endsWith(".domio.top")) subdomain = host.replace(".domio.top", "");
-  else if (host.endsWith(".localhost"))  subdomain = host.replace(".localhost", "");
+  if (host === `shop.${rootDomain}`    || host === "shop.localhost")    subdomain = "shop";
+  else if (host === `founder.${rootDomain}` || host === "founder.localhost") subdomain = "founder";
+  else if (host.endsWith(`.${rootDomain}`)) subdomain = host.replace(`.${rootDomain}`, "");
+  else if (host.endsWith(".localhost"))      subdomain = host.replace(".localhost", "");
 
   // ── Shop portal ────────────────────────────────────────────────────
   if (subdomain === "shop") {

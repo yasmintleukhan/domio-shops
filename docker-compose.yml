@@ -11,6 +11,7 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/domio_shops
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - NEXTAUTH_URL=${NEXTAUTH_URL:-https://shop.domio.top}
+      - NEXT_PUBLIC_ROOT_DOMAIN=${NEXT_PUBLIC_ROOT_DOMAIN:-domio.top}
       - S3_ENDPOINT=${S3_ENDPOINT}
       - S3_ACCESS_KEY=${S3_ACCESS_KEY}
       - S3_SECRET_KEY=${S3_SECRET_KEY}
@@ -26,7 +27,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.domio-shops.rule=Host(`shop.domio.top`)"
+      # Catches shop.domio.top (admin) + *.domio.top (storefronts)
+      - "traefik.http.routers.domio-shops.rule=Host(`shop.domio.top`) || HostRegexp(`{subdomain:[a-z0-9-]+}.domio.top`)"
       - "traefik.http.routers.domio-shops.entrypoints=websecure"
       - "traefik.http.routers.domio-shops.tls=true"
       - "traefik.http.routers.domio-shops.tls.certresolver=myresolver"
