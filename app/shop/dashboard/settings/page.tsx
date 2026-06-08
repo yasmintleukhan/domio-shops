@@ -47,8 +47,9 @@ export default function SettingsPage() {
       .then((d) => { setSettings(d); setLoading(false); });
   }, []);
 
+  const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
   const shopUrl = settings
-    ? `${window.location.origin}/storefront/${settings.slug}`
+    ? `https://${settings.slug}.${rootDomain}`
     : "";
 
   const copyUrl = async () => {
@@ -150,8 +151,8 @@ export default function SettingsPage() {
             <div>
               <label className="text-sm text-[#888880] block mb-1.5">URL-адрес (slug)</label>
               <div className="flex items-center gap-2 px-3 py-2 bg-[#111] border border-[#2a2a2a] rounded-xl text-sm opacity-60">
-                <span className="text-[#888880]">storefront/</span>
-                <span className="text-[#f5f0e8]">{settings.slug}</span>
+                <span className="text-[#888880]">{settings.slug}.</span>
+                <span className="text-[#f5f0e8]">{rootDomain}</span>
               </div>
               <p className="text-xs text-[#888880] mt-1">Slug нельзя изменить</p>
             </div>

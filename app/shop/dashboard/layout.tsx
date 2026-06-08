@@ -34,7 +34,7 @@ export default async function ShopDashboardLayout({
           </div>
           <div className="flex items-center gap-3 flex-shrink-0">
             <a
-              href={`/storefront/${shop?.slug}`}
+              href={`https://${shop?.slug}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-[#888880] hover:text-[#C9A84C] transition-colors cursor-pointer whitespace-nowrap"

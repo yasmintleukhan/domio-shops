@@ -14,6 +14,27 @@ export default auth(async function middleware(request: NextAuthRequest) {
     return NextResponse.next();
   }
 
+  // ── Early exit for storefront subdomains (public, no auth needed) ──
+  {
+    const earlyHost       = hostname.split(":")[0];
+    const earlyRoot       = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
+    const isShopOrFounder = earlyHost === `shop.${earlyRoot}` || earlyHost === `founder.${earlyRoot}` ||
+                            earlyHost === "shop.localhost"    || earlyHost === "founder.localhost";
+    const isStorefront    = !isShopOrFounder &&
+                            (earlyHost.endsWith(`.${earlyRoot}`) || earlyHost.endsWith(".localhost")) &&
+                            earlyHost !== earlyRoot;
+    if (isStorefront) {
+      const slug = earlyHost.endsWith(`.${earlyRoot}`)
+        ? earlyHost.replace(`.${earlyRoot}`, "")
+        : earlyHost.replace(".localhost", "");
+      if (slug && slug !== "www") {
+        const rewriteUrl = request.nextUrl.clone();
+        rewriteUrl.pathname = `/storefront/${slug}${pathname === "/" ? "" : pathname}`;
+        return NextResponse.rewrite(rewriteUrl);
+      }
+    }
+  }
+
   const host       = hostname.split(":")[0];
   const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
   const session    = request.auth;
@@ -64,15 +85,6 @@ export default auth(async function middleware(request: NextAuthRequest) {
     }
     if (!pathname.startsWith("/founder") && !pathname.startsWith("/api/")) {
       url.pathname = `/founder${pathname}`;
-      return NextResponse.rewrite(url);
-    }
-    return NextResponse.next();
-  }
-
-  // ── Storefront subdomain ───────────────────────────────────────────
-  if (subdomain && subdomain !== "www") {
-    if (!pathname.startsWith("/storefront") && !pathname.startsWith("/api/")) {
-      url.pathname = `/storefront/${subdomain}${pathname === "/" ? "" : pathname}`;
       return NextResponse.rewrite(url);
     }
     return NextResponse.next();
