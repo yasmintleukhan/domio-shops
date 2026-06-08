@@ -28,7 +28,16 @@ export default auth(async function middleware(request: NextAuthRequest) {
   // ── Shop portal ────────────────────────────────────────────────────
   if (subdomain === "shop") {
     if (!pathname.startsWith("/shop/login") && !pathname.startsWith("/api/")) {
-      if (!session || (role !== "shop_owner" && role !== "shop_staff")) {
+      if (!session) {
+        url.pathname = "/shop/login";
+        return NextResponse.redirect(url);
+      }
+      // founder logged in via shop login → redirect to founder dashboard
+      if (role === "founder") {
+        url.pathname = "/founder/dashboard";
+        return NextResponse.redirect(url);
+      }
+      if (role !== "shop_owner" && role !== "shop_staff") {
         url.pathname = "/shop/login";
         return NextResponse.redirect(url);
       }

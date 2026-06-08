@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +29,13 @@ export default function ShopLoginPage() {
     if (result?.error) {
       setError("Неверный email или пароль");
     } else {
-      router.push("/shop/dashboard");
+      const session = await getSession();
+      const role = (session?.user as Record<string, unknown> | undefined)?.role;
+      if (role === "founder") {
+        router.push("/founder/dashboard");
+      } else {
+        router.push("/shop/dashboard");
+      }
       router.refresh();
     }
   };
