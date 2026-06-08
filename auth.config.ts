@@ -4,6 +4,7 @@ import type { NextAuthConfig } from "next-auth";
 // Used by middleware.ts (Edge Runtime) and extended by lib/auth.ts (Node.js).
 export const authConfig = {
   secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   session: { strategy: "jwt" as const },
   pages: {
     signIn: "/shop/login",
