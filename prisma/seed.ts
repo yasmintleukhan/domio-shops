@@ -76,13 +76,13 @@ async function main() {
       price: 42000,
       category: "Кроссовки",
       images: [
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
-        "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&q=80",
-        "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80",
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=90",
+        "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=1200&q=90",
+        "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["38", "39", "40", "41", "42", "43", "44"] },
-        { name: "Цвет", values: ["Белый", "Чёрный", "Серый"] },
+        { name: "Цвет", values: ["Белый", "Чёрный", "Серый", "Красный"] },
       ],
       sort_order: 0,
     },
@@ -92,12 +92,13 @@ async function main() {
       price: 55000,
       category: "Кроссовки",
       images: [
-        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=800&q=80",
-        "https://images.unsplash.com/photo-1556906781-9a412961a28c?w=800&q=80",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=1200&q=90",
+        "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=1200&q=90",
+        "https://images.unsplash.com/photo-1556906781-9a412961a28c?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["39", "40", "41", "42", "43", "44", "45"] },
-        { name: "Цвет", values: ["Белый/Синий", "Чёрный/Золотой", "Серый/Оранжевый"] },
+        { name: "Цвет", values: ["Белый/Синий", "Чёрный/Золотой", "Серый/Оранжевый", "Тёмно-синий"] },
       ],
       sort_order: 1,
     },
@@ -107,12 +108,13 @@ async function main() {
       price: 38000,
       category: "Кроссовки",
       images: [
-        "https://images.unsplash.com/photo-1539185441755-769473a23570?w=800&q=80",
-        "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80",
+        "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1200&q=90",
+        "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1200&q=90",
+        "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["37", "38", "39", "40", "41", "42", "43"] },
-        { name: "Цвет", values: ["Серый", "Зелёный", "Бордо"] },
+        { name: "Цвет", values: ["Серый", "Зелёный", "Бордо", "Тёмно-синий"] },
       ],
       sort_order: 2,
     },
@@ -124,11 +126,13 @@ async function main() {
       price: 18500,
       category: "Украшения",
       images: [
-        "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
-        "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80",
+        "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&q=90",
+        "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=1200&q=90",
+        "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=1200&q=90",
       ],
       options: [
         { name: "Металл", values: ["Золото 585", "Серебро 925", "Позолота"] },
+        { name: "Размер жемчужины", values: ["6 мм", "8 мм", "10 мм"] },
       ],
       sort_order: 3,
     },
@@ -138,11 +142,13 @@ async function main() {
       price: 45000,
       category: "Украшения",
       images: [
-        "https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=800&q=80",
-        "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80",
+        "https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=1200&q=90",
+        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&q=90",
+        "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200&q=90",
       ],
       options: [
         { name: "Длина", values: ["16 см", "17 см", "18 см", "19 см"] },
+        { name: "Металл", values: ["Розовое золото 14К", "Жёлтое золото 14К", "Серебро 925"] },
       ],
       sort_order: 4,
     },
@@ -152,10 +158,14 @@ async function main() {
       price: 9800,
       category: "Украшения",
       images: [
-        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
-        "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&q=90",
+        "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=90",
+        "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1200&q=90",
       ],
-      options: [],
+      options: [
+        { name: "Металл", values: ["Серебро 925", "Позолота", "Розовая позолота"] },
+        { name: "Длина цепочки", values: ["40 см", "45 см", "50 см"] },
+      ],
       sort_order: 5,
     },
 
@@ -166,12 +176,13 @@ async function main() {
       price: 28000,
       category: "Одежда",
       images: [
-        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80",
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80",
+        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=1200&q=90",
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1200&q=90",
+        "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["XS", "S", "M", "L", "XL"] },
-        { name: "Цвет", values: ["Бежевый", "Чёрный", "Пудровый", "Изумрудный"] },
+        { name: "Цвет", values: ["Бежевый", "Чёрный", "Пудровый", "Изумрудный", "Терракот"] },
       ],
       sort_order: 6,
     },
@@ -181,12 +192,13 @@ async function main() {
       price: 52000,
       category: "Одежда",
       images: [
-        "https://images.unsplash.com/photo-1594938298603-c8148c4b4809?w=800&q=80",
-        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80",
+        "https://images.unsplash.com/photo-1594938298603-c8148c4b4809?w=1200&q=90",
+        "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=1200&q=90",
+        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["XS", "S", "M", "L", "XL", "XXL"] },
-        { name: "Цвет", values: ["Молочный", "Серый меланж", "Чёрный", "Бежевый"] },
+        { name: "Цвет", values: ["Молочный", "Серый меланж", "Чёрный", "Бежевый", "Хаки"] },
       ],
       sort_order: 7,
     },
@@ -196,12 +208,13 @@ async function main() {
       price: 19500,
       category: "Одежда",
       images: [
-        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80",
-        "https://images.unsplash.com/photo-1475178626620-a4d074967452?w=800&q=80",
+        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=1200&q=90",
+        "https://images.unsplash.com/photo-1475178626620-a4d074967452?w=1200&q=90",
+        "https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=1200&q=90",
       ],
       options: [
         { name: "Размер", values: ["25", "26", "27", "28", "29", "30", "31", "32"] },
-        { name: "Цвет", values: ["Светло-голубой", "Тёмно-синий", "Чёрный"] },
+        { name: "Цвет", values: ["Светло-голубой", "Тёмно-синий", "Чёрный", "Белый"] },
       ],
       sort_order: 8,
     },
@@ -211,12 +224,13 @@ async function main() {
       price: 34000,
       category: "Одежда",
       images: [
-        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80",
-        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&q=80",
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=1200&q=90",
+        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=1200&q=90",
+        "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=1200&q=90",
       ],
       options: [
-        { name: "Размер", values: ["S", "M", "L", "XL"] },
-        { name: "Цвет", values: ["Карамельный", "Серый", "Белый", "Тёмно-зелёный", "Бордо"] },
+        { name: "Размер", values: ["S", "M", "L", "XL", "XXL"] },
+        { name: "Цвет", values: ["Карамельный", "Серый", "Белый", "Тёмно-зелёный", "Бордо", "Чёрный"] },
       ],
       sort_order: 9,
     },
@@ -228,12 +242,13 @@ async function main() {
       price: 12800,
       category: "БАДы",
       images: [
-        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80",
-        "https://images.unsplash.com/photo-1550572017-edd951b55104?w=800&q=80",
+        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=90",
+        "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&q=90",
+        "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1200&q=90",
       ],
       options: [
-        { name: "Объём", values: ["30 саше", "60 саше"] },
-        { name: "Вкус", values: ["Персик-манго", "Клубника", "Без вкуса"] },
+        { name: "Объём", values: ["30 саше", "60 саше", "90 саше"] },
+        { name: "Вкус", values: ["Персик-манго", "Клубника", "Лимон", "Без вкуса"] },
       ],
       sort_order: 10,
     },
@@ -243,10 +258,12 @@ async function main() {
       price: 8500,
       category: "БАДы",
       images: [
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=90",
+        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&q=90",
       ],
       options: [
-        { name: "Количество", values: ["90 капсул", "180 капсул"] },
+        { name: "Количество", values: ["90 капсул", "180 капсул", "360 капсул"] },
+        { name: "Концентрация", values: ["1000 мг", "2000 мг"] },
       ],
       sort_order: 11,
     },
@@ -256,10 +273,12 @@ async function main() {
       price: 6900,
       category: "БАДы",
       images: [
-        "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&q=80",
+        "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&q=90",
+        "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=1200&q=90",
       ],
       options: [
-        { name: "Количество", values: ["60 таблеток", "120 таблеток"] },
+        { name: "Количество", values: ["60 таблеток", "120 таблеток", "240 таблеток"] },
+        { name: "Форма", values: ["Таблетки", "Капсулы", "Порошок"] },
       ],
       sort_order: 12,
     },
@@ -269,11 +288,12 @@ async function main() {
       price: 22000,
       category: "БАДы",
       images: [
-        "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=800&q=80",
+        "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=1200&q=90",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=90",
       ],
       options: [
-        { name: "Вкус", values: ["Шоколад", "Ваниль", "Клубника", "Без вкуса"] },
-        { name: "Объём", values: ["900 г", "1.8 кг"] },
+        { name: "Вкус", values: ["Шоколад", "Ваниль", "Клубника", "Печенье со сливками", "Без вкуса"] },
+        { name: "Объём", values: ["900 г", "1.8 кг", "3.6 кг"] },
       ],
       sort_order: 13,
     },
@@ -285,10 +305,14 @@ async function main() {
       price: 15600,
       category: "Косметика",
       images: [
-        "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80",
-        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
+        "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=90",
+        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1200&q=90",
+        "https://images.unsplash.com/photo-1643185539104-3622eb1f2de6?w=1200&q=90",
       ],
-      options: [],
+      options: [
+        { name: "Концентрация", values: ["0.2%", "0.5%", "1.0%"] },
+        { name: "Объём", values: ["30 мл", "50 мл"] },
+      ],
       sort_order: 14,
     },
     {
@@ -297,10 +321,12 @@ async function main() {
       price: 9200,
       category: "Косметика",
       images: [
-        "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=800&q=80",
+        "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=1200&q=90",
+        "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=1200&q=90",
       ],
       options: [
-        { name: "Тип кожи", values: ["Нормальная", "Жирная", "Сухая", "Комбинированная"] },
+        { name: "Тип кожи", values: ["Нормальная", "Жирная", "Сухая", "Комбинированная", "Чувствительная"] },
+        { name: "SPF", values: ["SPF 30", "SPF 50", "SPF 50+"] },
       ],
       sort_order: 15,
     },
@@ -312,11 +338,13 @@ async function main() {
       price: 48000,
       category: "Аксессуары",
       images: [
-        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80",
-        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80",
+        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1200&q=90",
+        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1200&q=90",
+        "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=1200&q=90",
       ],
       options: [
-        { name: "Цвет", values: ["Чёрный", "Кэмел", "Бордо", "Тёмно-синий"] },
+        { name: "Цвет", values: ["Чёрный", "Кэмел", "Бордо", "Тёмно-синий", "Белый"] },
+        { name: "Размер", values: ["S (30×22 см)", "M (40×30 см)", "L (50×35 см)"] },
       ],
       sort_order: 16,
     },
@@ -326,11 +354,13 @@ async function main() {
       price: 14500,
       category: "Аксессуары",
       images: [
-        "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&q=80",
-        "https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=800&q=80",
+        "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=90",
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=1200&q=90",
+        "https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=1200&q=90",
       ],
       options: [
-        { name: "Цвет линз", values: ["Серый", "Зеркальный золотой", "Коричневый"] },
+        { name: "Цвет линз", values: ["Серый", "Зеркальный золотой", "Коричневый", "Синий зеркальный"] },
+        { name: "Оправа", values: ["Серебро", "Золото", "Розовое золото", "Чёрный матовый"] },
       ],
       sort_order: 17,
     },
@@ -340,11 +370,12 @@ async function main() {
       price: 11000,
       category: "Аксессуары",
       images: [
-        "https://images.unsplash.com/photo-1624623278313-a930126a11c3?w=800&q=80",
+        "https://images.unsplash.com/photo-1624623278313-a930126a11c3?w=1200&q=90",
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=90",
       ],
       options: [
-        { name: "Размер", values: ["90 см", "100 см", "110 см", "120 см"] },
-        { name: "Цвет", values: ["Чёрный", "Коричневый", "Тёмно-коричневый"] },
+        { name: "Размер", values: ["90 см", "100 см", "110 см", "120 см", "130 см"] },
+        { name: "Цвет", values: ["Чёрный", "Коричневый", "Тёмно-коричневый", "Коньяк"] },
       ],
       sort_order: 18,
     },
@@ -356,11 +387,13 @@ async function main() {
       price: 7800,
       category: "Для дома",
       images: [
-        "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80",
-        "https://images.unsplash.com/photo-1602532305019-3dbbd482dae9?w=800&q=80",
+        "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=1200&q=90",
+        "https://images.unsplash.com/photo-1602532305019-3dbbd482dae9?w=1200&q=90",
+        "https://images.unsplash.com/photo-1636548024232-f067b11d88c6?w=1200&q=90",
       ],
       options: [
-        { name: "Аромат", values: ["Сандал и ваниль", "Лаванда", "Цитрус", "Роза"] },
+        { name: "Аромат", values: ["Сандал и ваниль", "Лаванда", "Цитрус", "Роза", "Жасмин"] },
+        { name: "Объём", values: ["150 мл (30ч)", "300 мл (50ч)", "500 мл (80ч)"] },
       ],
       sort_order: 19,
     },
@@ -370,11 +403,13 @@ async function main() {
       price: 32000,
       category: "Для дома",
       images: [
-        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80",
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=90",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90",
+        "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200&q=90",
       ],
       options: [
-        { name: "Размер", values: ["1.5 спальный", "2 спальный", "Евро"] },
-        { name: "Цвет", values: ["Белый", "Серо-бежевый", "Пыльная роза", "Шалфей"] },
+        { name: "Размер", values: ["1.5 спальный", "2 спальный", "Евро", "Семейный"] },
+        { name: "Цвет", values: ["Белый", "Серо-бежевый", "Пыльная роза", "Шалфей", "Небесно-голубой"] },
       ],
       sort_order: 20,
     },
@@ -428,9 +463,83 @@ async function main() {
   await prisma.product.deleteMany({ where: { shop_id: fashionShop.id } });
 
   const fashionProducts = [
-    { name: "Пальто осеннее двубортное", description: "Тёплое пальто из шерстяного сукна. Двубортная застёжка, пояс в комплекте. Длина миди.", price: 68000, category: "Верхняя одежда", images: ["https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80"], options: [{ name: "Размер", values: ["XS","S","M","L","XL"] }, { name: "Цвет", values: ["Бежевый","Серый","Чёрный"] }], sort_order: 0 },
-    { name: "Шарф кашемировый 180×30", description: "Мягкий кашемировый шарф. Размер 180×30 см.", price: 12800, category: "Аксессуары", images: ["https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=800&q=80"], options: [{ name: "Цвет", values: ["Кэмел","Серый","Бордо","Синий"] }], sort_order: 1 },
-    { name: "Свитер оверсайз рубчик", description: "Уютный оверсайз свитер из рубчатой вязки. Высокий ворот.", price: 14500, category: "Одежда", images: ["https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80"], options: [{ name: "Размер", values: ["S","M","L","XL"] }, { name: "Цвет", values: ["Молочный","Серый","Горчичный","Хаки"] }], sort_order: 2 },
+    {
+      name: "Пальто осеннее двубортное",
+      description: "Тёплое пальто из шерстяного сукна. Двубортная застёжка, пояс в комплекте. Длина миди. Подкладка из натуральной вискозы.",
+      price: 68000,
+      category: "Верхняя одежда",
+      images: [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=90",
+        "https://images.unsplash.com/photo-1539533018257-7a60e7b7f421?w=1200&q=90",
+        "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?w=1200&q=90",
+      ],
+      options: [
+        { name: "Размер", values: ["XS", "S", "M", "L", "XL", "XXL"] },
+        { name: "Цвет", values: ["Бежевый", "Серый", "Чёрный", "Кэмел", "Шоколад"] },
+      ],
+      sort_order: 0,
+    },
+    {
+      name: "Шарф кашемировый 180×30",
+      description: "Мягкий кашемировый шарф из 100% монгольского кашемира. Размер 180×30 см. Бахрома по краям, ручная работа.",
+      price: 12800,
+      category: "Аксессуары",
+      images: [
+        "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=1200&q=90",
+        "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=1200&q=90",
+      ],
+      options: [
+        { name: "Цвет", values: ["Кэмел", "Серый", "Бордо", "Синий", "Молочный", "Чёрный"] },
+        { name: "Размер", values: ["140×30 см", "180×30 см", "200×35 см"] },
+      ],
+      sort_order: 1,
+    },
+    {
+      name: "Свитер оверсайз рубчик",
+      description: "Уютный оверсайз свитер из рубчатой вязки. Высокий ворот, удлинённый крой, манжеты на резинке.",
+      price: 14500,
+      category: "Одежда",
+      images: [
+        "https://images.unsplash.com/photo-1583846783214-7229a88ca949?w=1200&q=90",
+        "https://images.unsplash.com/photo-1467043198406-dc953a3defa0?w=1200&q=90",
+        "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=1200&q=90",
+      ],
+      options: [
+        { name: "Размер", values: ["S", "M", "L", "XL", "XXL"] },
+        { name: "Цвет", values: ["Молочный", "Серый", "Горчичный", "Хаки", "Пудровый", "Терракот"] },
+      ],
+      sort_order: 2,
+    },
+    {
+      name: "Блузка с объёмными рукавами",
+      description: "Романтичная блузка из лёгкой вискозы. Объёмные рукава-фонарики, V-вырез, свободный крой. Подходит для офиса и вечернего выхода.",
+      price: 11500,
+      category: "Одежда",
+      images: [
+        "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=1200&q=90",
+        "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=90",
+      ],
+      options: [
+        { name: "Размер", values: ["XS", "S", "M", "L", "XL"] },
+        { name: "Цвет", values: ["Белый", "Молочный", "Чёрный", "Голубой", "Розовый"] },
+      ],
+      sort_order: 3,
+    },
+    {
+      name: "Юбка миди плиссированная",
+      description: "Элегантная плиссированная юбка из атласной ткани. Высокая посадка, боковая молния. Длина миди — 80 см.",
+      price: 16000,
+      category: "Одежда",
+      images: [
+        "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=1200&q=90",
+        "https://images.unsplash.com/photo-1625947866040-e8b4d26bf1b5?w=1200&q=90",
+      ],
+      options: [
+        { name: "Размер", values: ["XS", "S", "M", "L", "XL"] },
+        { name: "Цвет", values: ["Бежевый", "Чёрный", "Пудровый", "Зелёный", "Бордо"] },
+      ],
+      sort_order: 4,
+    },
   ];
 
   for (const p of fashionProducts) {
