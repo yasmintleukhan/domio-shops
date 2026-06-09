@@ -29,6 +29,8 @@ export default function ShopLoginPage() {
     if (result?.error) {
       setError("Неверный email или пароль");
     } else {
+      // Wait for cookie to be set before navigating
+      await new Promise(r => setTimeout(r, 300));
       const session = await getSession();
       const role = (session?.user as Record<string, unknown> | undefined)?.role;
       if (role === "founder") {
