@@ -28,7 +28,9 @@ export default auth(async function middleware(request: NextAuthRequest) {
         ? earlyHost.replace(`.${earlyRoot}`, "")
         : earlyHost.replace(".localhost", "");
       if (slug && slug !== "www") {
-        const rewriteUrl = request.nextUrl.clone();
+        // Use request.url as base so hostname stays internal (what Next.js expects),
+        // only override pathname — avoids hostname mismatch from nextUrl.clone()
+        const rewriteUrl = new URL(request.url);
         rewriteUrl.pathname = `/storefront/${slug}${pathname === "/" ? "" : pathname}`;
         return NextResponse.rewrite(rewriteUrl);
       }
