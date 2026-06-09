@@ -1,113 +1,121 @@
-import NextAuth, { type NextAuthRequest } from "next-auth";
-import { authConfig } from "@/auth.config";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-// Edge-compatible: only authConfig (no Prisma)
-const { auth } = NextAuth(authConfig);
-
-export default auth(async function middleware(request: NextAuthRequest) {
+export async function middleware(request: NextRequest) {
   const hostname = request.headers.get("host") || "";
-  const url      = request.nextUrl.clone();
-  const pathname = url.pathname;
+  const pathname = request.nextUrl.pathname;
 
-  if (pathname.startsWith("/_next") || pathname.startsWith("/api/auth")) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api/auth")
+  ) {
     return NextResponse.next();
-  }
-
-  // ── Early exit for storefront subdomains (public, no auth needed) ──
-  {
-    const earlyHost       = hostname.split(":")[0];
-    const earlyRoot       = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
-    const isShopOrFounder = earlyHost === `shop.${earlyRoot}` || earlyHost === `founder.${earlyRoot}` ||
-                            earlyHost === "shop.localhost"    || earlyHost === "founder.localhost";
-    const isStorefront    = !isShopOrFounder &&
-                            (earlyHost.endsWith(`.${earlyRoot}`) || earlyHost.endsWith(".localhost")) &&
-                            earlyHost !== earlyRoot;
-    if (isStorefront) {
-      const slug = earlyHost.endsWith(`.${earlyRoot}`)
-        ? earlyHost.replace(`.${earlyRoot}`, "")
-        : earlyHost.replace(".localhost", "");
-      if (slug && slug !== "www") {
-        // Use request.url as base so hostname stays internal (what Next.js expects),
-        // only override pathname — avoids hostname mismatch from nextUrl.clone()
-        const rewriteUrl = new URL(request.url);
-        rewriteUrl.pathname = `/storefront/${slug}${pathname === "/" ? "" : pathname}`;
-        return NextResponse.rewrite(rewriteUrl);
-      }
-    }
   }
 
   const host       = hostname.split(":")[0];
   const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN || "domio.top";
-  const session    = request.auth;
-  const role       = (session?.user as Record<string, unknown> | undefined)?.role as string | undefined;
 
   // ── Resolve subdomain ──────────────────────────────────────────────
-  let subdomain = "";
-  if (host === `shop.${rootDomain}`    || host === "shop.localhost")    subdomain = "shop";
-  else if (host === `founder.${rootDomain}` || host === "founder.localhost") subdomain = "founder";
-  else if (host.endsWith(`.${rootDomain}`)) subdomain = host.replace(`.${rootDomain}`, "");
-  else if (host.endsWith(".localhost"))      subdomain = host.replace(".localhost", "");
+  const isShop     = host === `shop.${rootDomain}` || host === "shop.localhost";
+  const isFounder  = host === `founder.${rootDomain}` || host === "founder.localhost";
+  const isMain     = host === rootDomain || host === "localhost" || host.startsWith("localhost:");
+  const isStorefront = !isShop && !isFounder && !isMain &&
+                       (host.endsWith(`.${rootDomain}`) || host.endsWith(".localhost"));
 
-  // ── Shop portal ────────────────────────────────────────────────────
-  if (subdomain === "shop") {
-    // founder landed here after login redirect — let it through
-    if (pathname.startsWith("/founder/")) {
-      return NextResponse.next();
-    }
-    if (!pathname.startsWith("/shop/login") && !pathname.startsWith("/api/")) {
-      if (!session) {
-        url.pathname = "/shop/login";
-        return NextResponse.redirect(url);
-      }
-      // founder logged in via shop login → redirect to founder dashboard
-      if (role === "founder") {
-        url.pathname = "/founder/dashboard";
-        return NextResponse.redirect(url);
-      }
-      if (role !== "shop_owner" && role !== "shop_staff") {
-        url.pathname = "/shop/login";
-        return NextResponse.redirect(url);
-      }
-    }
-    if (!pathname.startsWith("/shop") && !pathname.startsWith("/api/")) {
-      url.pathname = `/shop${pathname}`;
+  // ── Storefront: fully public, just rewrite ─────────────────────────
+  if (isStorefront) {
+    const slug = host.endsWith(`.${rootDomain}`)
+      ? host.replace(`.${rootDomain}`, "")
+      : host.replace(/\.localhost(:\d+)?$/, "");
+    if (slug && slug !== "www") {
+      const url = request.nextUrl.clone();
+      url.pathname = `/storefront/${slug}${pathname === "/" ? "" : pathname}`;
       return NextResponse.rewrite(url);
     }
-    return NextResponse.next();
   }
 
-  // ── Founder portal ─────────────────────────────────────────────────
-  if (subdomain === "founder") {
-    if (!pathname.startsWith("/founder/login") && !pathname.startsWith("/api/")) {
-      if (!session || role !== "founder") {
+  // ── Shop / Founder portals need auth ──────────────────────────────
+  if (isShop || isFounder) {
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+    const role = token?.role as string | undefined;
+
+    if (isShop) {
+      if (pathname.startsWith("/founder/")) return NextResponse.next();
+
+      if (!pathname.startsWith("/shop/login") && !pathname.startsWith("/api/")) {
+        if (!token) {
+          const url = request.nextUrl.clone();
+          url.pathname = "/shop/login";
+          return NextResponse.redirect(url);
+        }
+        if (role === "founder") {
+          const url = request.nextUrl.clone();
+          url.pathname = "/founder/dashboard";
+          return NextResponse.redirect(url);
+        }
+        if (role !== "shop_owner" && role !== "shop_staff") {
+          const url = request.nextUrl.clone();
+          url.pathname = "/shop/login";
+          return NextResponse.redirect(url);
+        }
+      }
+      if (!pathname.startsWith("/shop") && !pathname.startsWith("/api/")) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/shop${pathname}`;
+        return NextResponse.rewrite(url);
+      }
+      return NextResponse.next();
+    }
+
+    if (isFounder) {
+      if (!pathname.startsWith("/founder/login") && !pathname.startsWith("/api/")) {
+        if (!token || role !== "founder") {
+          const url = request.nextUrl.clone();
+          url.pathname = "/founder/login";
+          return NextResponse.redirect(url);
+        }
+      }
+      if (!pathname.startsWith("/founder") && !pathname.startsWith("/api/")) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/founder${pathname}`;
+        return NextResponse.rewrite(url);
+      }
+      return NextResponse.next();
+    }
+  }
+
+  // ── Main domain: protect dashboard routes ─────────────────────────
+  if (
+    pathname.startsWith("/shop/dashboard") ||
+    pathname.startsWith("/founder/dashboard")
+  ) {
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+    const role = token?.role as string | undefined;
+
+    if (pathname.startsWith("/shop/dashboard")) {
+      if (!token || (role !== "shop_owner" && role !== "shop_staff")) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/shop/login";
+        return NextResponse.redirect(url);
+      }
+    }
+    if (pathname.startsWith("/founder/dashboard")) {
+      if (!token || role !== "founder") {
+        const url = request.nextUrl.clone();
         url.pathname = "/founder/login";
         return NextResponse.redirect(url);
       }
     }
-    if (!pathname.startsWith("/founder") && !pathname.startsWith("/api/")) {
-      url.pathname = `/founder${pathname}`;
-      return NextResponse.rewrite(url);
-    }
-    return NextResponse.next();
-  }
-
-  // ── Main domain: protect dashboard routes ─────────────────────────
-  if (pathname.startsWith("/shop/dashboard")) {
-    if (!session || (role !== "shop_owner" && role !== "shop_staff")) {
-      url.pathname = "/shop/login";
-      return NextResponse.redirect(url);
-    }
-  }
-  if (pathname.startsWith("/founder/dashboard")) {
-    if (!session || role !== "founder") {
-      url.pathname = "/founder/login";
-      return NextResponse.redirect(url);
-    }
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: [
