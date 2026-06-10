@@ -53,11 +53,13 @@ function MobileCartIsland({ accentColor }: { accentColor: string }) {
   if (count === 0) return null;
   return (
     <div
-      className={`md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
-        isOpen
-          ? "opacity-0 pointer-events-none translate-y-4"
-          : "opacity-100 pointer-events-auto translate-y-0 animate-fade-up"
-      }`}
+      className="md:hidden fixed bottom-5 z-50 transition-all duration-300"
+      style={{
+        left: "50%",
+        transform: `translateX(-50%) translateY(${isOpen ? "16px" : "0px"})`,
+        opacity: isOpen ? 0 : 1,
+        pointerEvents: isOpen ? "none" : "auto",
+      }}
     >
       <button
         onClick={() => setIsOpen(true)}
